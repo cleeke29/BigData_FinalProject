@@ -46,14 +46,14 @@ class Redis:
 
 def main():
     '''
-    Main
+    Main def that runs the program.
     '''
 
     # Make CSV into Pandas
     df = pd.read_csv("Movies (1970-2023).csv",names=['movie title', 'director', 'rating', 'genres', 'language cinema', 'votes', 'year', 'runtime'])
 
     # Filter out only what we want
-    df.dropna()
+    df = df[df.notna().all(axis=1)]
 
     list_of_dicts = df.to_dict(orient='records')
 
