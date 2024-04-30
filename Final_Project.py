@@ -1,15 +1,8 @@
 # Imports
 import pandas as pd
-import seaborn as sns
-import seaborn.objects as so
 from db_config import get_redis_connection
-import secrets1
-import redis as r
 import json
-import requests
-import yaml
 from redis.commands.json.path import Path
-import csv
 import matplotlib.pyplot as plt
 
 # Color codes for plotting data
@@ -55,11 +48,12 @@ def main():
 
     # Filter out only what we want
     df = df[df.notna().all(axis=1)]
+    df.drop(['imdb id', 'cast', 'plot', 'poster', 'languages', 'trailer'], axis=1, inplace=True)
 
     list_of_dicts = df.to_dict(orient='records')
 
     #Print out Entire csv
-    #print(list_of_dicts)
+    print(list_of_dicts)
 
     localRedis = Redis()
 
@@ -93,11 +87,11 @@ def processing1(df):
     plt.show()
 
 def processing2(df):
-    # Votes vs Runtime
+    # Votes vs Language of Origin
     plt.figure(figsize=(10, 6))
-    plt.scatter(df['runtime'], df['votes'], color='green')
-    plt.title('Votes vs Runtime')
-    plt.xlabel('Runtime')
+    plt.scatter(df['language cinema'], df['votes'], color='green')
+    plt.title('Votes vs Language of Origin')
+    plt.xlabel('Language of Origin')
     plt.ylabel('Votes')
     plt.grid(True)
     plt.show()
@@ -105,7 +99,8 @@ def processing2(df):
 def processing3(df):
     # Bar chart for number of movies per director
     plt.figure(figsize=(10, 6))
-    df['director'].value_counts().plot(kind='bar', color='purple')
+    top_10_directors = df['director'].value_counts().head(10)
+    top_10_directors.plot(kind='bar', color='purple')
     plt.title('Number of Movies per Director')
     plt.xlabel('Director')
     plt.ylabel('Number of Movies')
