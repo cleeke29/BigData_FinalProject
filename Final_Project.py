@@ -43,7 +43,6 @@ def main():
     '''
 
     # Make CSV into Pandas
-    #df = pd.read_csv("Movies (1970-2023).csv",names=['movie title', 'director', 'rating', 'genres', 'language cinema', 'votes', 'year', 'runtime'])
     df = pd.read_csv("Movies (1970-2023).csv")
 
     # Filter out only what we want
