@@ -22,3 +22,5 @@ Also mention what you liked/didn't link in this course.
 
 Data From:
 https://www.kaggle.com/datasets/ishanluhani/indian-and-american-movies-1970-2023#
+
+To Run: 'python3 .\Final_Project.py'

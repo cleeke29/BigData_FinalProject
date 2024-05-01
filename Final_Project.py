@@ -97,7 +97,7 @@ def processing2(df):
 
 def processing3(df):
     # Bar chart for number of movies per director
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     top_10_directors = df['director'].value_counts().head(10)
     top_10_directors.plot(kind='bar', color='purple')
     plt.title('Number of Movies per Director')
